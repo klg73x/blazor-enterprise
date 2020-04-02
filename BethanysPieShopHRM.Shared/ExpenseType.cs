@@ -13,6 +13,7 @@ namespace BethanysPieShopHRM.Shared
         Food = 5,
         Transportation = 6,
         Hotel = 7,
+        Gift = 8,
         Other = 8
     }
 }

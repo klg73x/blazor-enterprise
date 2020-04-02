@@ -1,6 +1,7 @@
 ﻿using BethanysPieShopHRM.Shared;
 using BethanysPieShopHRM.UI.Services;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,9 @@ namespace BethanysPieShopHRM.UI.Pages
         [Inject]
         public NavigationManager navManager { get; set; }
 
+        [Inject]
+        public ILogger<TaskListBase> Logger { get; set; }
+
         [Parameter]
         public int Count { get; set; }
 
@@ -23,12 +27,22 @@ namespace BethanysPieShopHRM.UI.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            Tasks = (await taskService.GetAllTasks()).ToList();
+            try
+            {
+                Tasks = (await taskService.GetAllTasks()).ToList();
+
+             
+            }
+            catch (Exception e)
+            {
+                Logger.LogDebug(e, e.Message);
+            }
 
             if (Count != 0)
             {
                 Tasks = Tasks.Take(Count).ToList();
             }
+
         }
 
         public void AddTask()

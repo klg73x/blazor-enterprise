@@ -50,6 +50,11 @@ namespace BethanysPieShopHRM.UI.Pages
 
             int.TryParse(EmployeeId, out var employeeId);
 
+            if (EmployeeDataService.SavedEmployee != null)
+            {
+                Employee = EmployeeDataService.SavedEmployee;
+            }
+
             if (employeeId == 0) //new employee is being created
             {
                 //add some defaults
@@ -108,6 +113,12 @@ namespace BethanysPieShopHRM.UI.Pages
             Message = "Deleted successfully";
 
             Saved = true;
+        }
+
+        protected void TempSave()
+        {
+            EmployeeDataService.SavedEmployee = Employee;
+            NavigationManager.NavigateTo("/employeeoverview");
         }
 
         protected void NavigateToOverview()

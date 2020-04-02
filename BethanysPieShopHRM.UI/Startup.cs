@@ -31,7 +31,7 @@ namespace BethanysPieShopHRM.UI
                 return client;
             });
 
-            services.AddTransient<IEmployeeDataService, EmployeeDataService>();
+            services.AddScoped<IEmployeeDataService, EmployeeDataService>();
             services.AddTransient<ICountryDataService, CountryDataService>();
             services.AddTransient<IJobCategoryDataService, JobCategoryDataService>();
             services.AddTransient<IExpenseDataService, ExpenseDataService>();
@@ -39,6 +39,7 @@ namespace BethanysPieShopHRM.UI
             services.AddTransient<IEmailService, EmailService>();
             services.AddTransient<ISurveyDataService, SurveyDataService>();
             services.AddTransient<ICurrencyDataService, CurrencyDataService>();
+            services.AddTransient<IExpenseApprovalService, ManagerApprovalService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
